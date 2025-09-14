@@ -1,0 +1,64 @@
+.root {
+    -color-primary: rgb(13, 110, 253);
+    -color-success: rgb(25, 135, 84);
+    -color-info: rgb(13, 202, 240);
+    -color-danger: rgb(220, 53, 69);
+    -color-warning: rgb(255, 193, 7);
+    -color-light: rgb(248, 249, 250);
+    -color-dark: rgb(33, 37, 41);
+}
+
+/*
+*:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+*/
+
+.table-row-cell:filled:selected {
+  -fx-background: -fx-control-inner-background ;
+  -fx-background-color: -fx-table-cell-border-color, -fx-background;
+  -fx-background-insets: 0, 0 0 1 0 ;
+  -fx-table-cell-border-color: derive(-fx-color, 5%);
+}
+
+.table-row-cell:odd:filled:selected {
+  -fx-background: -fx-control-inner-background-alt ;
+}
+
+.badge {
+    -fx-min-width: 40px;
+    -fx-alignment: center;
+    -fx-background-radius: 3;
+}
+
+.bg-success {
+    -fx-background-color: -color-success;
+    -fx-text-fill: -color-light;
+}
+
+.bg-danger {
+    -fx-background-color: -color-danger;
+    -fx-text-fill: -color-light;
+}
+
+.fill-warning {
+    -fx-text-fill: -color-warning;
+}
+
+.h4 {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.h6 {
+    -fx-font-weight: bold;
+}
+
+.btn-text {
+    -fx-text-fill: -color-primary;
+}
+
+.btn-text {
+    -fx-text-fill: -color-primary;
+}
