@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="300.0" prefWidth="400.0"
+      alignment="CENTER"
+      fx:controller="org.wkuwku.quicklabelfx.LabelController"
+      spacing="18">
+    <HBox spacing="8" alignment="CENTER">
+        <Label text="名称"/>
+        <TextField fx:id="uiNameField"/>
+    </HBox>
+    <HBox spacing="8" alignment="CENTER">
+        <Label text="标签"/>
+        <TextField fx:id="uiLabelField"/>
+    </HBox>
+</VBox>

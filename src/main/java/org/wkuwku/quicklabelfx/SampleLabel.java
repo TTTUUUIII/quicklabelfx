@@ -11,4 +11,12 @@ public class SampleLabel {
         this.name = name;
         this.label = label;
     }
+
+    @Override
+    public String toString() {
+        return "SampleLabel{" +
+                "name='" + name + '\'' +
+                ", label='" + label + '\'' +
+                '}';
+    }
 }

@@ -1,32 +1,52 @@
 package org.wkuwku.quicklabelfx;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class HpdSample {
-    private static final String[] IMG_FORMATS = new String[] {
-            ".jpg", ".png"
-    };
+    private static final String[] IMG_FORMATS = new String[] {".jpg", ".png"};
 
     public final Path txtPath;
     private final Path imgPath;
+    private final String id;
 
-    private SampleLabel label = SampleLabel.DEFAULT;
+    private ObjectProperty<SampleLabel> label = new SimpleObjectProperty<>(SampleLabel.DEFAULT);
     private HpdSample(Path txtPath, Path imgPath) {
         this.txtPath = txtPath;
         this.imgPath = imgPath;
+        id = imgPath.toString().substring(0, imgPath.toString().lastIndexOf("."));
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Path getImgPath() {
         return imgPath;
     }
 
-    public SampleLabel getLabel() {
+    public ObjectProperty<SampleLabel> labelProperty() {
         return label;
     }
 
+    public SampleLabel getLabel() {
+        return label.get();
+    }
+
     public void setLabel(SampleLabel label) {
-        this.label = label;
+        this.label.set(label);
+    }
+
+    public void moveTo(Path dirPath) throws IOException {
+        String txtFileName = txtPath.toFile().getName();
+        String imgFileName = imgPath.toFile().getName();
+        Files.move(txtPath, dirPath.resolve(txtFileName));
+        Files.move(imgPath, dirPath.resolve(imgFileName));
     }
 
     @Override
@@ -34,6 +54,8 @@ public class HpdSample {
         return "HpdSample{" +
                 "txtPath=" + txtPath +
                 ", imgPath=" + imgPath +
+                ", id='" + id + '\'' +
+                ", label=" + label +
                 '}';
     }
 
