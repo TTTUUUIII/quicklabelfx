@@ -4,25 +4,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.shape.Box?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioMenuItem?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@styles/styles.css"
             fx:controller="org.wkuwku.quicklabelfx.HomeController">
@@ -62,6 +61,31 @@
                             </ImageView>
                         </graphic>
                     </MenuItem>
+                </items>
+            </MenuButton>
+            <MenuButton text="设置">
+                <fx:define>
+                    <ToggleGroup fx:id="mExportModeGroup" />
+                </fx:define>
+                <items>
+                    <Menu text="导出模式">
+                        <items>
+                            <RadioMenuItem text="拷贝" selected="true" toggleGroup="$mExportModeGroup" userData="copy">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@icons/file_copy.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </RadioMenuItem>
+                            <RadioMenuItem text="移动" toggleGroup="$mExportModeGroup" userData="move">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@icons/move_item.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </RadioMenuItem>
+                        </items>
+                    </Menu>
                 </items>
             </MenuButton>
         </ToolBar>

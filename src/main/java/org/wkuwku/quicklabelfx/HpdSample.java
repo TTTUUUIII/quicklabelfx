@@ -49,6 +49,13 @@ public class HpdSample {
         Files.move(imgPath, dirPath.resolve(imgFileName));
     }
 
+    public void copyTo(Path dirPath) throws IOException {
+        String txtFileName = txtPath.toFile().getName();
+        String imgFileName = imgPath.toFile().getName();
+        Files.copy(txtPath, dirPath.resolve(txtFileName));
+        Files.copy(imgPath, dirPath.resolve(imgFileName));
+    }
+
     @Override
     public String toString() {
         return "HpdSample{" +

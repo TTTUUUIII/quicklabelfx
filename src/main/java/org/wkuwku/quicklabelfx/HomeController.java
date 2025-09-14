@@ -31,6 +31,8 @@ public class HomeController {
     private final ObservableList<HpdSample> mListItems = FXCollections.observableArrayList();
 
     @FXML
+    private ToggleGroup mExportModeGroup;
+    @FXML
     private FlowPane uiLabelContainer;
     @FXML
     private TableView<HpdSample> uiTableView;
@@ -154,12 +156,15 @@ public class HomeController {
                             item.getStyleClass().add("btn-text");
                             item.setOnMouseClicked(event -> {
                                 if (event.getButton() == MouseButton.PRIMARY) {
-                                    onLabelAction(event, getIndex());
+                                    onSetSampleLabelAction(event, getIndex());
                                 }
                             });
                             view.getChildren().add(item);
-                            item = new Hyperlink("详情");
+                            item = new Hyperlink("删除");
                             item.getStyleClass().add("btn-text");
+                            item.setOnAction(event -> {
+                                onDeleteSample(getIndex());
+                            });
                             view.getChildren().add(item);
                             setGraphic(view);
                         }
@@ -218,7 +223,12 @@ public class HomeController {
             if (!labelPath.toFile().exists()) {
                 Files.createDirectory(labelPath);
             }
-            item.moveTo(labelPath);
+            Toggle toggle = mExportModeGroup.getSelectedToggle();
+            if (toggle == null || "copy".equals(toggle.getUserData())) {
+                item.copyTo(labelPath);
+            } else {
+                item.moveTo(labelPath);
+            }
         }
         showAlert("提示", "导出完成！");
     }
@@ -247,7 +257,7 @@ public class HomeController {
         mLabels.clear();
     }
 
-    private void onLabelAction(MouseEvent event, int index) {
+    private void onSetSampleLabelAction(MouseEvent event, int index) {
         ToggleButton toggle = (ToggleButton) mLabelGroup.getSelectedToggle();
         if (toggle == null) return;
         SampleLabel label = getLabelByName(toggle.getText());
@@ -266,6 +276,10 @@ public class HomeController {
             sample.setLabel(label);
             updateChart();
         }
+    }
+
+    private void onDeleteSample(int index) {
+        mListItems.remove(index);
     }
 
     private void showAlert(String title, String msg) {
